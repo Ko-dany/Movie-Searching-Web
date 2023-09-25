@@ -1,0 +1,2 @@
+* text=auto eol=crlf
+# This tells Git to treat all files as text, and use CRLF(for Windows) line endings.
