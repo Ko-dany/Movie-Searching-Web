@@ -1,6 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
-
 import Movie from "./components/Movie";
 
 function App() {
@@ -8,15 +6,9 @@ function App() {
   const [searchKey, setSearchKey] = useState("");
   const [searchingMovie, setSearchingMovie] = useState("");
 
+  const url = `https://streaming-availability.p.rapidapi.com/v2/search/title?title=${searchKey}&country=us&show_type=movie&output_language=en`;
   const options = {
     method: "GET",
-    url: "https://streaming-availability.p.rapidapi.com/v2/search/title",
-    params: {
-      title: searchKey,
-      country: "us",
-      show_type: "movie",
-      output_language: "en",
-    },
     headers: {
       "X-RapidAPI-Key": "9d8d045e64msha24ceb55d4dd45ap174ff0jsn88bd6ee49532",
       "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
@@ -34,8 +26,14 @@ function App() {
 
     const fetchData = async () => {
       try {
-        const response = await axios.request(options);
-        setData(response.data);
+        const response = await fetch(url, options);
+        const result = await response.text();
+        const parsedData = JSON.parse(result);
+
+        parsedData.result.sort((a, b) => b.year - a.year);
+
+        setData(parsedData);
+        console.log(parsedData);
       } catch (error) {
         console.log(error);
       }
@@ -51,11 +49,12 @@ function App() {
         <input type="text" placeholder="Movie Title" onChange={onChange} />
         <button type="submit">Search</button>
       </form>
-      {data.length === 0 || searchKey === "" ? null : (
+      {data.length === 0 ? null : (
         <div>
           <h1>Movie List for {searchingMovie}</h1>
-          {data.result.map((movie) => (
+          {data.result.map((movie, index) => (
             <Movie
+              key={index}
               id={movie.tmdbId}
               title={movie.title}
               year={movie.year}
