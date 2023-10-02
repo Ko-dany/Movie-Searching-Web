@@ -1,6 +1,11 @@
 import { useState } from "react";
 import Movie from "./components/Movie";
 
+import "./styles/App.css";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, Button, Row, Col } from "react-bootstrap";
+
 function App() {
   const [data, setData] = useState([]);
   const [searchKey, setSearchKey] = useState("");
@@ -44,14 +49,31 @@ function App() {
 
   return (
     <div>
-      <h1>Hey! Try to search movies here</h1>
-      <form onSubmit={onSubmit}>
-        <input type="text" placeholder="Movie Title" onChange={onChange} />
-        <button type="submit">Search</button>
-      </form>
+      <video
+        class="bg-video"
+        playsinline="playsinline"
+        autoplay="autoplay"
+        muted="muted"
+        loop="loop"
+      >
+        <source src="/videos/bg-video.mp4" alt="Wrong Path" type="video/mp4" />
+      </video>
+
+      <h1 className="search-heading">Hey! Try to search movies here</h1>
+      <Form className="search-form" onSubmit={onSubmit}>
+        <Form.Control
+          type="text"
+          placeholder="Movie Title"
+          onChange={onChange}
+          required
+        />
+        <Button variant="primary" type="submit">
+          Search
+        </Button>
+      </Form>
       {data.length === 0 ? null : (
         <div>
-          <h1>Movie List for {searchingMovie}</h1>
+          <h1>Movie List for "{searchingMovie}"</h1>
           {data.result.map((movie, index) => (
             <Movie
               key={index}
