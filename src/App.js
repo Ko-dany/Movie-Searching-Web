@@ -48,8 +48,8 @@ function App() {
   };
 
   return (
-    <div>
-      <video
+    <div className="body">
+      {/* <video
         class="bg-video"
         playsinline="playsinline"
         autoplay="autoplay"
@@ -57,39 +57,58 @@ function App() {
         loop="loop"
       >
         <source src="/videos/bg-video.mp4" alt="Wrong Path" type="video/mp4" />
-      </video>
+      </video> */}
 
-      <h1 className="search-heading">Hey! Try to search movies here</h1>
-      <Form className="search-form" onSubmit={onSubmit}>
-        <Form.Control
-          type="text"
-          placeholder="Movie Title"
-          onChange={onChange}
-          required
-        />
-        <Button variant="primary" type="submit">
-          Search
-        </Button>
-      </Form>
-      {data.length === 0 ? null : (
-        <div>
-          <h1>Movie List for "{searchingMovie}"</h1>
-          {data.result.map((movie, index) => (
-            <Movie
-              key={index}
-              id={movie.tmdbId}
-              title={movie.title}
-              year={movie.year}
-              posterURL={movie.posterURLs.original}
-              streamingInfo={
-                movie.streamingInfo.us != null ? movie.streamingInfo.us : null
-              }
-              overview={movie.overview}
-              tagline={movie.tagline}
+      <img className="bg-img" src="/images/Clapboard.jpg" alt="Clapboard" />
+      <div className="main-div">
+        <div className="main-div-content col-9 col-sm-7 col-md-6">
+          <h1 className="main-tagline">Search your movie!</h1>
+          <p className="main-intro">
+            Welcome to our movie search experience, where you can enhance your
+            movie exploration journey. Simply search by the movie title, and
+            you'll discover valuable information such as posters, realese date,
+            taglines, overviews, and streaming details. Explore the detailed
+            information of your favorit movies and enjoy your time here!
+          </p>
+          <Form className="search-form mt-5 mb-5" onSubmit={onSubmit}>
+            <Form.Control
+              className="form-input"
+              type="text"
+              placeholder="Movie Title"
+              onChange={onChange}
+              required
             />
-          ))}
+            <Button
+              className="form-btn btn btn-primary mt-4"
+              variant="primary"
+              type="submit"
+            >
+              Search
+            </Button>
+          </Form>
+          {data.length === 0 ? null : (
+            <div>
+              <h1>Movie List for "{searchingMovie}"</h1>
+              {data.result.map((movie, index) => (
+                <Movie
+                  key={index}
+                  id={movie.tmdbId}
+                  title={movie.title}
+                  year={movie.year}
+                  posterURL={movie.posterURLs.original}
+                  streamingInfo={
+                    movie.streamingInfo.us != null
+                      ? movie.streamingInfo.us
+                      : null
+                  }
+                  overview={movie.overview}
+                  tagline={movie.tagline}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
