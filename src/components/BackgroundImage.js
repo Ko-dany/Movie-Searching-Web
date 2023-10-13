@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/BackgroundImage.css";
+import "./BackgroundImage.css";
 
 function BackgroundImage() {
   return <div className="bg-image"></div>;

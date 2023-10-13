@@ -53,21 +53,20 @@ div.main-div::before {
 
 div.main-div div.main-div-content {
   position: relative;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 h1.main-tagline {
-  font-size: 3rem;
+  font-size: 2.8rem;
   text-align: center;
   text-transform: uppercase;
   color: whitesmoke;
 }
 
 p.main-intro {
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: justify;
-  text-transform: capitalize;
   color: whitesmoke;
 }
 
@@ -77,8 +76,8 @@ p.main-intro {
 }
 
 .form-input {
-  font-size: 2.5rem;
-  height: 4rem;
+  font-size: 1.2em;
+  height: 3rem;
 }
 
 .form-input:focus {
@@ -96,4 +95,23 @@ p.main-intro {
 .form-btn:hover {
   background-color: #1a2929 !important;
   transform: scale(1.01);
+}
+
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 12px;
+  }
+  .main-intro {
+    display: none;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  html {
+    font-size: 17px;
+  }
+}
+@media screen and (min-width: 1023px) {
+  html {
+    font-size: 20px;
+  }
 }

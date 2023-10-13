@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Movie from "./components/Movie";
+import { Router, Routes } from "react-router-dom";
 
-import "./styles/App.css";
+import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 
 function App() {
   const [data, setData] = useState([]);
@@ -61,7 +61,7 @@ function App() {
 
       <img className="bg-img" src="/images/Clapboard.jpg" alt="Clapboard" />
       <div className="main-div">
-        <div className="main-div-content col-9 col-sm-7 col-md-6">
+        <div className="main-div-content col-7 col-lg-6">
           <h1 className="main-tagline">Search your movie!</h1>
           <p className="main-intro">
             Welcome to our movie search experience, where you can enhance your
@@ -70,7 +70,7 @@ function App() {
             taglines, overviews, and streaming details. Explore the detailed
             information of your favorit movies and enjoy your time here!
           </p>
-          <Form className="search-form mt-5 mb-5" onSubmit={onSubmit}>
+          <Form className="search-form mt-4 mb-4" onSubmit={onSubmit}>
             <Form.Control
               className="form-input"
               type="text"
@@ -86,27 +86,6 @@ function App() {
               Search
             </Button>
           </Form>
-          {data.length === 0 ? null : (
-            <div>
-              <h1>Movie List for "{searchingMovie}"</h1>
-              {data.result.map((movie, index) => (
-                <Movie
-                  key={index}
-                  id={movie.tmdbId}
-                  title={movie.title}
-                  year={movie.year}
-                  posterURL={movie.posterURLs.original}
-                  streamingInfo={
-                    movie.streamingInfo.us != null
-                      ? movie.streamingInfo.us
-                      : null
-                  }
-                  overview={movie.overview}
-                  tagline={movie.tagline}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>

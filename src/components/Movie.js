@@ -1,4 +1,4 @@
-import "../styles/Movie.css";
+import "./Movie.css";
 
 function Movie({
   id,
